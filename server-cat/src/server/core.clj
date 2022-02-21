@@ -28,7 +28,7 @@
   (mc/remove db "countries" {:name "Germany"}))
 
 
-(defroutes app
+(defroutes app [db]
   (GET "/cat" [] "Hello world")
   (GET "/get-data" [db] (get-data [db]))
   (POST "/remove-data" [db] (remove-data [db]))
