@@ -2,7 +2,11 @@
  :deps {org.clojure/clojure {:mvn/version "1.10.3"}
         http-kit/http-kit {:mvn/version "2.6.0-alpha1"}
         compojure {:mvn/version "1.6.1"}
-        cheshire {:mvn/version "5.9.0"}} 
+        cheshire {:mvn/version "5.9.0"}
+        com.novemberain/monger {:mvn/version "3.1.0" 
+                            ;;     :exclusions [org.jcuda/jcuda-natives
+       ;;                                   org.jcuda/jcublas-natives]
+       }} 
 :aliases {:run {:main-opts ["-m" "server.core"]}
           :repl {:extra-deps {nrepl/nrepls {:mvn/version "0.6.0"}}}}
 }
