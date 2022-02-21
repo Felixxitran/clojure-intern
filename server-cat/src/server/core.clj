@@ -11,32 +11,39 @@
            [com.mongodb DB WriteConcern]))
 ;;connect to mongodb database
 
-  (let [conn (mg/connect)
-        db   (mg/get-db conn "monger-test")]
+
+
+  
 
 
 (defn counting []
   (println "counted"))
 
-
-(defn change-data [db]
-  (mc/insert db "countries" {:name "Germany" :official-language "German" :population 82000000}))
-(defn get-data [db]
+(defn change-data []
+  (let [conn (mg/connect)
+        db   (mg/get-db conn "countries")]
+  (mc/insert-and-return db "countries" {:name "Germany" :official-language "German" :population 82000000})))
+(defn get-data []
+  (let [conn (mg/connect)
+        db   (mg/get-db conn "countries")]
    (mc/find db "countries" {:name "Germany"})
-  (mc/find-maps db "countries" {:name "Germany"}))
-(defn remove-data [db]
-  (mc/remove db "countries" {:name "Germany"}))
+  (mc/find-maps db "countries" {:name "Germany"})))
+
+(defn remove-data []
+  (let [conn (mg/connect)
+        db   (mg/get-db conn "countries")]
+  (mc/remove db "countries" {:name "Germany"})))
 
 
-(defroutes app [db]
-  (GET "/cat" [] "Hello world")
-  (GET "/get-data" [db] (get-data [db]))
-  (POST "/remove-data" [db] (remove-data [db]))
-  )
-(defn start-server []
+(defroutes app
+  (GET "/cat" [] "hello world")
+  (GET "/get-data" [] (get-data))
+  (POST "/remove-data" [] (remove-data))
+  (POST "/change-data" [] (change-data)))
   
+(defn start-server [] 
   (counting)
-  (run-server app {:port 3000})))
+  (run-server app {:port 3000}))
 
 (defn -main
   []
