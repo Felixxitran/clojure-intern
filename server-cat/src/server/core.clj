@@ -92,9 +92,6 @@
           (println "there is not response"))
       )
     )
-  
-  
-
   (POST "/remove-data" [] (remove-data))
   (GET "/insert-data" [] 
     (try
