@@ -9,7 +9,9 @@
        }
        ring/ring-core {:mvn/version "1.7.1"}
        ring/ring-jetty-adapter {:mvn/version "1.7.1"}
-       
+       ring/ring-json {:mvn/version "0.5.1"}
+       clj-time/clj-time {:mvn/version "0.15.2"}
+       johannesloetzsch/crypto-password {:mvn/version "0.2.1"}
        } 
 :aliases {:run {:main-opts ["-m" "server.core"]}
           :repl {:extra-deps {nrepl/nrepls {:mvn/version "0.6.0"}}}}

@@ -7,8 +7,10 @@
                  [com.novemberain/monger "3.5.0"]
                  [compojure "1.6.2"]
                  [ring/ring-core "1.7.1"]
-                 [ring/ring-jetty-adapter "1.7.1"]]
-  :main ^:skip-aot server-cat.core
+                 [ring/ring-jetty-adapter "1.7.1"]
+                 
+                 ]
+  :main ^:skip-aot server.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
